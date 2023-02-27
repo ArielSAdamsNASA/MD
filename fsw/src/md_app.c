@@ -251,13 +251,13 @@ int32 MD_InitSoftwareBusServices(void)
     /*
     ** Initialize housekeeping telemetry packet (clear user data area)
     */
-    CFE_MSG_Init(&MD_AppData.HkPkt.TlmHeader.Msg, CFE_SB_ValueToMsgId(MD_HK_TLM_MID), MD_HK_TLM_LNGTH);
+    CFE_MSG_Init(CFE_MSG_PTR(MD_AppData.HkPkt), CFE_SB_ValueToMsgId(MD_HK_TLM_MID), MD_HK_TLM_LNGTH);
     /*
     ** Initialize dwell packets (clear user data area)
     */
     for (TblIndex = 0; TblIndex < MD_NUM_DWELL_TABLES; TblIndex++)
     {
-        CFE_MSG_Init(&MD_AppData.MD_DwellPkt[TblIndex].TlmHeader.Msg,
+        CFE_MSG_Init(CFE_MSG_PTR(MD_AppData.MD_DwellPkt[TblIndex]),
                      CFE_SB_ValueToMsgId(MD_DWELL_PKT_MID_BASE + TblIndex),
                      MD_DWELL_PKT_LNGTH); /* this is max pkt size */
 
@@ -701,8 +701,8 @@ void MD_HkStatus()
     /*
     ** Send housekeeping telemetry packet...
     */
-    CFE_SB_TimeStampMsg(&HkPktPtr->TlmHeader.Msg);
-    CFE_SB_TransmitMsg(&HkPktPtr->TlmHeader.Msg, true);
+    CFE_SB_TimeStampMsg(CFE_MSG_PTR(HkPktPtr));
+    CFE_SB_TransmitMsg(CFE_MSG_PTR(HkPktPtr), true);
 }
 
 /******************************************************************************/

@@ -1,3 +1,4 @@
+#include <md_eds_typedefs.h>
 /************************************************************************
  * NASA Docket No. GSC-18,922-1, and identified as “Core Flight
  * System (cFS) Memory Dwell Application Version 2.4.1”
@@ -52,13 +53,14 @@
  *    - If the Length field is 4, the sum of DwellAddress.SymName plus DwellAddress.Offset
  *      must be evenly divisable by 4.
  */
+#ifndef CFE_EDS_ENABLED_BUILD
 typedef struct
 {
     uint16       Length;       /**< \brief Length of dwell field in bytes. 0 indicates null entry. */
     uint16       Delay;        /**< \brief Delay before following dwell sample in number of task wakeup calls */
     MD_SymAddr_t DwellAddress; /**< \brief Dwell Address in #MD_SymAddr_t format */
 } MD_TableLoadEntry_t;
-
+#endif
 /** \brief Size of table load entry */
 #define MD_TBL_LOAD_ENTRY_LNGTH sizeof(MD_TableLoadEntry_t)
 
@@ -78,6 +80,7 @@ typedef struct
  *    - The table's Enabled field must be set to TRUE.  This is initially set in the load, and
  *      is controlled with the #MD_START_DWELL_CC and #MD_STOP_DWELL_CC commands.
  */
+#ifndef CFE_EDS_ENABLED_BUILD
 typedef struct
 {
     uint32 Enabled; /**< \brief Table enable flag: #MD_DWELL_STREAM_DISABLED, #MD_DWELL_STREAM_ENABLED */
@@ -88,8 +91,7 @@ typedef struct
 
     MD_TableLoadEntry_t Entry[MD_DWELL_TABLE_SIZE]; /**< \brief Array of individual memory dwell entries */
 } MD_DwellTableLoad_t;
-
+#endif
 /** \brief Dwell table length */
 #define MD_TBL_LOAD_LNGTH sizeof(MD_DwellTableLoad_t)
-
 #endif
