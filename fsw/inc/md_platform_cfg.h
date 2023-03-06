@@ -67,7 +67,7 @@
  *       target platform in question
  */
 #define MD_TBL_FILENAME_FORMAT "/cf/md_dw%02d.tbl"
-
+#ifndef CFE_EDS_ENABLED_BUILD
 /**
  *  \brief Number of memory dwell tables.
  *
@@ -86,7 +86,7 @@
  *       it to 65535 points.
  */
 #define MD_DWELL_TABLE_SIZE 25
-
+#endif
 /**
  *  \brief Option of whether 32 bit integers must be aligned to 32 bit
  *   boundaries.  1 indicates 'yes' (32-bit boundary alignment enforced),
@@ -105,7 +105,7 @@
  *       Value must be 0 or 1.
  */
 #define MD_SIGNATURE_OPTION 1
-
+#ifndef CFE_EDS_ENABLED_BUILD
 /**
  *  \brief Number of characters used in the Signature Field
  *
@@ -118,7 +118,7 @@
  *       specified must therefore be at least 4.
  */
 #define MD_SIGNATURE_FIELD_LENGTH 32
-
+#endif
 /**
  * \brief Mission specific version number for MD application
  *

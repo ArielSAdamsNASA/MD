@@ -251,7 +251,7 @@ int32 MD_ValidTableEntry(MD_TableLoadEntry_t *TblEntryPtr)
     }
     else
     {
-        if (MD_ResolveSymAddr(&TblEntryPtr->DwellAddress, &ResolvedAddr) != true)
+        if (MD_ResolveSymAddr(CFE_MSG_PTR(TblEntryPtr->DwellAddress), &ResolvedAddr) != true)
         { /* Symbol was non-null AND was not in Symbol Table */
             Status = MD_RESOLVE_ERROR;
         }
@@ -319,7 +319,7 @@ void MD_CopyUpdatedTbl(MD_DwellTableLoad_t *MD_LoadTablePtr, uint8 TblIndex)
 
         ThisLoadEntry = &MD_LoadTablePtr->Entry[EntryIndex];
 
-        MD_ResolveSymAddr(&ThisLoadEntry->DwellAddress, &ResolvedAddr);
+        MD_ResolveSymAddr(CFE_MSG_PTR(ThisLoadEntry->DwellAddress), &ResolvedAddr);
 
         MD_AppData.MD_DwellTables[TblIndex].Entry[EntryIndex].ResolvedAddress = ResolvedAddr;
         MD_AppData.MD_DwellTables[TblIndex].Entry[EntryIndex].Length          = ThisLoadEntry->Length;

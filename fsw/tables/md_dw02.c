@@ -31,7 +31,7 @@
 #include "cfe_tbl_filedef.h"
 #include "md_platform_cfg.h"
 
-MD_DwellTableLoad_t MD_Default_Dwell2_Tbl = {
+MD_DwellTableLoad_t MD_DwellTableLoad = {
     /* Enabled State */ MD_DWELL_STREAM_DISABLED,
 #if MD_SIGNATURE_OPTION == 1
     /* Signature     */ "Default Table 2",
@@ -66,4 +66,4 @@ MD_DwellTableLoad_t MD_Default_Dwell2_Tbl = {
         /*  25 */ {0, 0, {0, ""}},
     }};
 
-CFE_TBL_FILEDEF(MD_Default_Dwell2_Tbl, MD.DWELL_TABLE2, MD Dwell Table 2, md_dw02.tbl)
+CFE_TBL_FILEDEF(MD_DwellTableLoad, MD.DWELL_TABLE2, MD Dwell Table 2, md_dw02.tbl)
